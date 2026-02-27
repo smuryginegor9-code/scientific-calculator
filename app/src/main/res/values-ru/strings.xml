@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">Научный калькулятор</string>
+
+    <string name="title_calculator">Научный калькулятор</string>
+    <string name="title_help">Справка</string>
+    <string name="title_history">История</string>
+
+    <string name="menu_help">Справка</string>
+    <string name="menu_history">История</string>
+
+    <string name="label_expression">Выражение</string>
+    <string name="label_result">Результат</string>
+    <string name="label_scientific">Научные функции</string>
+    <string name="label_basic">Базовые кнопки</string>
+
+    <string name="mode_deg">DEG</string>
+    <string name="mode_rad">RAD</string>
+
+    <string name="btn_sin">sin</string>
+    <string name="btn_cos">cos</string>
+    <string name="btn_tan">tg</string>
+    <string name="btn_ln">ln</string>
+    <string name="btn_log">lg</string>
+    <string name="btn_open_paren">(</string>
+    <string name="btn_close_paren">)</string>
+    <string name="btn_pi">π</string>
+    <string name="btn_e">e</string>
+    <string name="btn_square">x²</string>
+    <string name="btn_sqrt">√x</string>
+    <string name="btn_power">x^y</string>
+    <string name="btn_root">n√x</string>
+    <string name="btn_factorial">n!</string>
+    <string name="btn_percent">%</string>
+
+    <string name="btn_ac">AC</string>
+    <string name="btn_del">DEL</string>
+    <string name="btn_div">/</string>
+    <string name="btn_mul">*</string>
+    <string name="btn_minus">-</string>
+    <string name="btn_plus">+</string>
+    <string name="btn_equals">=</string>
+    <string name="btn_dot">.</string>
+    <string name="btn_comma">,</string>
+    <string name="btn_0">0</string>
+    <string name="btn_1">1</string>
+    <string name="btn_2">2</string>
+    <string name="btn_3">3</string>
+    <string name="btn_4">4</string>
+    <string name="btn_5">5</string>
+    <string name="btn_6">6</string>
+    <string name="btn_7">7</string>
+    <string name="btn_8">8</string>
+    <string name="btn_9">9</string>
+
+    <string name="history_empty">История пока пустая.</string>
+    <string name="history_clear_title">Очистить историю</string>
+    <string name="history_clear_message">Удалить все сохраненные вычисления?</string>
+    <string name="clear">Очистить</string>
+    <string name="cancel">Отмена</string>
+
+    <string name="error_invalid_expression">Некорректное выражение. Проверьте операторы и числа.</string>
+    <string name="error_unknown_token">Неизвестный символ в выражении.</string>
+    <string name="error_parentheses">Скобки расставлены некорректно.</string>
+    <string name="error_division_by_zero">Деление на ноль недопустимо.</string>
+    <string name="error_negative_sqrt">Квадратный корень определен только для x ≥ 0.</string>
+    <string name="error_non_positive_log">Логарифм определен только для x > 0.</string>
+    <string name="error_tan_undefined">tan(x) не определен для этого угла.</string>
+    <string name="error_factorial_non_integer">Факториал определен только для целых чисел.</string>
+    <string name="error_factorial_negative">Факториал определен только для n ≥ 0.</string>
+    <string name="error_factorial_limit">Максимум: 20!, чтобы избежать переполнения.</string>
+    <string name="error_result_not_real">Результат не является конечным вещественным числом.</string>
+
+    <string name="help_content">Как пользоваться:\n\n• Базовые операции: +, -, *, /\n• Поддерживаются скобки: (2+3)*4\n• Проценты реализованы как бинарная операция: x % y = y*x/100. Пример: 50%200 = 100\n• Факториал работает только для целых n ≥ 0 и до 20!\n• Тригонометрия: sin(x), cos(x), tan(x). Режим DEG/RAD переключает единицы угла\n• Логарифмы: ln(x), log10(x), только для x > 0\n• Квадратный корень: sqrt(x) или √x, только для x ≥ 0\n• Кнопка корня n-й степени (ⁿ√x) вставляет ^(1/. Пример: 27^(1/3) = 3\n• Константы: π = 3.1415926536, e = 2.7182818285\n• Поддерживаются точка и запятая в десятичных числах; запятая автоматически заменяется на точку\n\nПримеры:\n• sin(90) в DEG = 1\n• ln(2.7182818285) = 1\n• log10(100) = 2\n• 5! = 120</string>
+</resources>

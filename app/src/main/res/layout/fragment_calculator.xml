@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.example.engineeringcalculator.viewmodel.CalculatorViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorSurface">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:title="@string/title_calculator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/calculator_menu" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topAppBar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="?attr/colorOutlineVariant"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_expression"
+                            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/textExpression"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:ellipsize="start"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:minHeight="44dp"
+                            android:singleLine="true"
+                            android:scrollHorizontally="true"
+                            android:text="@{vm.expression}"
+                            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                            app:autoSizeMaxTextSize="44sp"
+                            app:autoSizeMinTextSize="14sp"
+                            app:autoSizeStepGranularity="1sp"
+                            app:autoSizeTextType="uniform"
+                            tools:text="(2+3)*4" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/label_result"
+                            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/textResult"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:ellipsize="start"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:minHeight="56dp"
+                            android:singleLine="true"
+                            android:scrollHorizontally="true"
+                            android:text="@{vm.result}"
+                            android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+                            android:textStyle="bold"
+                            app:autoSizeMaxTextSize="56sp"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeStepGranularity="1sp"
+                            app:autoSizeTextType="uniform"
+                            tools:text="20" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/errorCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardBackgroundColor="?attr/colorErrorContainer"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp"
+                    app:visibleIfError="@{vm.error}">
+
+                    <TextView
+                        android:id="@+id/textError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        android:textColor="?attr/colorOnErrorContainer"
+                        app:calculatorError="@{vm.error}"
+                        tools:text="Division by zero is not allowed." />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/angleToggleGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="12dp"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonDeg"
+                        style="@style/Widget.EngineeringCalculator.Button.Outline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mode_deg" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonRad"
+                        style="@style/Widget.EngineeringCalculator.Button.Outline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mode_rad" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/label_scientific"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSin"
+                            style="@style/Widget.EngineeringCalculator.Button.Scientific"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_sin" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCos"
+                            style="@style/Widget.EngineeringCalculator.Button.Scientific"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_cos" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTan"
+                            style="@style/Widget.EngineeringCalculator.Button.Scientific"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_tan" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnLn"
+                            style="@style/Widget.EngineeringCalculator.Button.Scientific"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_ln" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnLog"
+                            style="@style/Widget.EngineeringCalculator.Button.Scientific"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_log" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnOpenParen"
+                            style="@style/Widget.EngineeringCalculator.Button.Operator"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_open_paren" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCloseParen"
+                            style="@style/Widget.EngineeringCalculator.Button.Operator"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_close_paren" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPi"
+                            style="@style/Widget.EngineeringCalculator.Button.Scientific"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_pi" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnE"
+                            style="@style/Widget.EngineeringCalculator.Button.Scientific"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_e" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSqrt"
+                            style="@style/Widget.EngineeringCalculator.Button.Scientific"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_sqrt" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSquare"
+                            style="@style/Widget.EngineeringCalculator.Button.Operator"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_square" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPower"
+                            style="@style/Widget.EngineeringCalculator.Button.Operator"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_power" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnRoot"
+                            style="@style/Widget.EngineeringCalculator.Button.Scientific"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_root" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPercent"
+                            style="@style/Widget.EngineeringCalculator.Button.Operator"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_percent" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnFactorial"
+                            style="@style/Widget.EngineeringCalculator.Button.Operator"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_factorial" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/label_basic"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAc"
+                            style="@style/Widget.EngineeringCalculator.Button.Danger"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_ac" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnDel"
+                            style="@style/Widget.EngineeringCalculator.Button.Danger"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_del" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnDiv"
+                            style="@style/Widget.EngineeringCalculator.Button.Operator"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_div" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnMul"
+                            style="@style/Widget.EngineeringCalculator.Button.Operator"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_mul" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn7"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_7" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn8"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_8" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn9"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_9" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnMinus"
+                            style="@style/Widget.EngineeringCalculator.Button.Operator"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_minus" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn4"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_4" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn5"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_5" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn6"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_6" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPlus"
+                            style="@style/Widget.EngineeringCalculator.Button.Operator"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_plus" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn1"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_1" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn2"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_2" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn3"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_3" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnEquals"
+                            style="@style/Widget.EngineeringCalculator.Button.Equal"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_equals" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn0"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_0" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnDot"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_dot" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnComma"
+                            style="@style/Widget.EngineeringCalculator.Button.Number"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_comma" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

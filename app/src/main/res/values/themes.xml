@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.EngineeringCalculator" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.EngineeringCalculator.Button" parent="">
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="Widget.EngineeringCalculator.Button.Base" parent="Widget.Material3.Button">
+        <item name="android:minHeight">50dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.EngineeringCalculator.Button</item>
+    </style>
+
+    <style name="Widget.EngineeringCalculator.Button.Number" parent="Widget.EngineeringCalculator.Button.Base">
+        <item name="backgroundTint">?attr/colorSurfaceVariant</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="Widget.EngineeringCalculator.Button.Operator" parent="Widget.EngineeringCalculator.Button.Base">
+        <item name="backgroundTint">?attr/colorSecondaryContainer</item>
+        <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
+    </style>
+
+    <style name="Widget.EngineeringCalculator.Button.Scientific" parent="Widget.EngineeringCalculator.Button.Base">
+        <item name="backgroundTint">?attr/colorTertiaryContainer</item>
+        <item name="android:textColor">?attr/colorOnTertiaryContainer</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="Widget.EngineeringCalculator.Button.Equal" parent="Widget.EngineeringCalculator.Button.Base">
+        <item name="backgroundTint">?attr/colorPrimaryContainer</item>
+        <item name="android:textColor">?attr/colorOnPrimaryContainer</item>
+    </style>
+
+    <style name="Widget.EngineeringCalculator.Button.Danger" parent="Widget.EngineeringCalculator.Button.Base">
+        <item name="backgroundTint">?attr/colorErrorContainer</item>
+        <item name="android:textColor">?attr/colorOnErrorContainer</item>
+    </style>
+
+    <style name="Widget.EngineeringCalculator.Button.Outline" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">42dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.EngineeringCalculator.Button</item>
+    </style>
+
+</resources>

@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">Scientific Calculator</string>
+
+    <string name="title_calculator">Scientific Calculator</string>
+    <string name="title_help">Help</string>
+    <string name="title_history">History</string>
+
+    <string name="menu_help">Help</string>
+    <string name="menu_history">History</string>
+
+    <string name="label_expression">Expression</string>
+    <string name="label_result">Result</string>
+    <string name="label_scientific">Scientific</string>
+    <string name="label_basic">Basic</string>
+
+    <string name="mode_deg">DEG</string>
+    <string name="mode_rad">RAD</string>
+
+    <string name="btn_sin">sin</string>
+    <string name="btn_cos">cos</string>
+    <string name="btn_tan">tg</string>
+    <string name="btn_ln">ln</string>
+    <string name="btn_log">lg</string>
+    <string name="btn_open_paren">(</string>
+    <string name="btn_close_paren">)</string>
+    <string name="btn_pi">π</string>
+    <string name="btn_e">e</string>
+    <string name="btn_square">x²</string>
+    <string name="btn_sqrt">√x</string>
+    <string name="btn_power">x^y</string>
+    <string name="btn_root">n√x</string>
+    <string name="btn_factorial">n!</string>
+    <string name="btn_percent">%</string>
+
+    <string name="btn_ac">AC</string>
+    <string name="btn_del">DEL</string>
+    <string name="btn_div">/</string>
+    <string name="btn_mul">*</string>
+    <string name="btn_minus">-</string>
+    <string name="btn_plus">+</string>
+    <string name="btn_equals">=</string>
+    <string name="btn_dot">.</string>
+    <string name="btn_comma">,</string>
+    <string name="btn_0">0</string>
+    <string name="btn_1">1</string>
+    <string name="btn_2">2</string>
+    <string name="btn_3">3</string>
+    <string name="btn_4">4</string>
+    <string name="btn_5">5</string>
+    <string name="btn_6">6</string>
+    <string name="btn_7">7</string>
+    <string name="btn_8">8</string>
+    <string name="btn_9">9</string>
+
+    <string name="history_empty">No calculations yet.</string>
+    <string name="history_clear_title">Clear history</string>
+    <string name="history_clear_message">Delete all saved calculations?</string>
+    <string name="clear">Clear</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="error_invalid_expression">Invalid expression. Check operators and numbers.</string>
+    <string name="error_unknown_token">Unknown symbol in expression.</string>
+    <string name="error_parentheses">Parentheses are not balanced.</string>
+    <string name="error_division_by_zero">Division by zero is not allowed.</string>
+    <string name="error_negative_sqrt">Square root is defined only for x ≥ 0.</string>
+    <string name="error_non_positive_log">Logarithm is defined only for x > 0.</string>
+    <string name="error_tan_undefined">tan(x) is undefined for this angle.</string>
+    <string name="error_factorial_non_integer">Factorial is defined only for whole numbers.</string>
+    <string name="error_factorial_negative">Factorial is defined only for n ≥ 0.</string>
+    <string name="error_factorial_limit">Maximum factorial is 20! to avoid overflow.</string>
+    <string name="error_result_not_real">Result is not a finite real number.</string>
+
+    <string name="help_content">How to use:\n\n• Basic operations: +, -, *, /\n• Parentheses are supported: (2+3)*4\n• Percent is binary: x % y = y*x/100. Example: 50%200 = 100\n• Factorial works only for whole n ≥ 0, and up to 20!\n• Trigonometry: sin(x), cos(x), tan(x). Switch DEG/RAD for angle units\n• Logarithms: ln(x), log10(x), only for x > 0\n• Square root: sqrt(x) or √x, only for x ≥ 0\n• Nth root button (ⁿ√x) inserts ^(1/. Example: 27^(1/3) = 3\n• Constants: π = 3.1415926536, e = 2.7182818285\n• Decimal point and comma are both accepted; comma is normalized to dot\n\nExamples:\n• sin(90) in DEG = 1\n• ln(2.7182818285) = 1\n• log10(100) = 2\n• 5! = 120</string>
+</resources>

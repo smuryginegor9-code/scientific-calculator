@@ -1,0 +1,15 @@
+package com.example.engineeringcalculator.domain
+
+enum class CalculatorError {
+    INVALID_EXPRESSION,
+    UNKNOWN_TOKEN,
+    MISMATCHED_PARENTHESES,
+    DIVISION_BY_ZERO,
+    NEGATIVE_SQRT,
+    NON_POSITIVE_LOG,
+    TAN_UNDEFINED,
+    FACTORIAL_NON_INTEGER,
+    FACTORIAL_NEGATIVE,
+    FACTORIAL_LIMIT,
+    RESULT_NOT_REAL
+}
