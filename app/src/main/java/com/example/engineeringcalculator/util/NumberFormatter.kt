@@ -4,17 +4,26 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.Locale
 import kotlin.math.abs
+import kotlin.math.roundToLong
 
 object NumberFormatter {
 
     private const val SCALE = 12
-    private const val NEAR_ZERO_EPS = 1e-12
+    private const val NEAR_ZERO_EPS = 1e-10
+    private const val NEAR_INTEGER_EPS = 1e-10
     private const val SCI_UPPER_THRESHOLD = 1e12
     private const val SCI_LOWER_THRESHOLD = 1e-6
     private const val MAX_PLAIN_LENGTH = 16
 
     fun format(value: Double): String {
         if (abs(value) < NEAR_ZERO_EPS) return "0"
+
+        if (abs(value) <= Long.MAX_VALUE.toDouble()) {
+            val roundedLong = value.roundToLong()
+            if (abs(value - roundedLong.toDouble()) < NEAR_INTEGER_EPS) {
+                return roundedLong.toString()
+            }
+        }
 
         val absValue = abs(value)
         if (absValue >= SCI_UPPER_THRESHOLD || absValue < SCI_LOWER_THRESHOLD) {
